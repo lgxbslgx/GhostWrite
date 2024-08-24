@@ -47,10 +47,10 @@ int main() {
     uint64_t virt = (uint64_t)target;
     uint64_t phys = get_physical_address(virt);
 
-    printf("Virtual address:  %16lx\n", virt);
-    printf("Physical address: %16lx\n\n", phys);
+    printf("Virtual address:\t%16lx\n", virt);
+    printf("Physical address:\t%16lx\n\n", phys);
 
-    printf("Value before:     %16lx\n", *target);
+    printf("Value before:\t%16lx\n", *target);
 
     evict();
     asm volatile(
@@ -62,5 +62,5 @@ int main() {
             ".fill 1, 4, 0x10028027\n\t"
             "fence" :: "r"(phys), "r"(0xfe) : "ra");
 
-    printf("Value after:      %16lx\n", *target);
+    printf("Value after:\t%16lx\n", *target);
 }

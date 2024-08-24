@@ -1,0 +1,28 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  ghostwrite:
+    name: Run Ghostwrite on ${{ matrix.soc }}
+    runs-on:
+      - riscv-builders
+      - ${{ matrix.soc }}
+    strategy:
+      matrix:
+        soc:
+          - soc-spacemit-k1
+          - soc-starfive-jh7100
+          - soc-thead-1520
+    steps:
+    - uses: actions/checkout@v4
+    - name: build
+      run: gcc -march="rv64gvzve64x" ghostwrite.c -o ghostwrite
+    - name: cat-cpu
+      run: cat /proc/cpuinfo
+    - name: run-test
+      run: ./ghostwrite || true
