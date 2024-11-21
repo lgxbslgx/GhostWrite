@@ -16,8 +16,6 @@ jobs:
       matrix:
         soc:
           - soc-spacemit-k1
-          - soc-starfive-jh7100
-          - soc-thead-1520
     steps:
     - uses: actions/checkout@v4
     - name: build
