@@ -22,6 +22,6 @@ jobs:
     - name: build
       run: gcc -march="rv64gvzve64x" ghostwrite.c -o ghostwrite
     - name: cat-cpu
-      run: head -n 10 /proc/cpuinfo
+      run: head -n 9 /proc/cpuinfo
     - name: run-test
       run: ./ghostwrite || true
